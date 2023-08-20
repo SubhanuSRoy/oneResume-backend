@@ -1,3 +1,5 @@
 .env
 
 .oneresume-storage-firebase-key.json
+
+./node_modules
