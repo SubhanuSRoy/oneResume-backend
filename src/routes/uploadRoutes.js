@@ -27,4 +27,22 @@ router.post('/uploadResume', upload.single('fileData'), async (req, res) => {
     }
 });
 
+// post route to get the email id in the form of user_id and then retunr the link of the file which is named {user_id}.pdf
+router.post('/getResume', async (req, res) => {
+    try {
+        const user_id = req.body.user_id;
+
+        if (!user_id) {
+            return res.status(400).send('Missing user_id');
+        }
+
+        const publicUrl = await uploadController.getResume(user_id);
+
+        return res.status(200).send(publicUrl);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send('Internal server error');
+    }
+});
+
 module.exports = router;
