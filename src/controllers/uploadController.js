@@ -6,7 +6,7 @@ const { getStorage, getDownloadURL } = require('firebase-admin/storage');
 const uploadFile = async (file, user_id) => {
   try {
     const bucket = storage.bucket();
-    const fileBlob = bucket.file(`resumes/${user_id}.pdf`);
+    const fileBlob = bucket.file(`${user_id}.pdf`);
     const blobStream = fileBlob.createWriteStream();
 
     return new Promise((resolve, reject) => {
@@ -38,7 +38,7 @@ const getResume = async (user_id) => {
   try {
     console.log(user_id);
     const bucket = storage.bucket();
-    const file = bucket.file(`resumes/${user_id}.pdf`);
+    const file = bucket.file(`${user_id}.pdf`);
     const exists = await file.exists();
     if (exists[0]) {
       const fileRef = getStorage().bucket(bucket.name).file(file.name);
