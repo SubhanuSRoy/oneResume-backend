@@ -19,8 +19,9 @@ router.post('/uploadResume', upload.single('fileData'), async (req, res) => {
         }
 
         const publicUrl = await uploadController.uploadFile(file, user_id);
+        const updatedURL = await publicUrl?.replace(/\&token=.*/, "");
 
-        return res.status(200).send(publicUrl);
+        return res.status(200).send(updatedURL);
     } catch (error) {
         console.error(error);
         return res.status(500).send('Internal server error');
@@ -37,8 +38,11 @@ router.post('/getResume', async (req, res) => {
         }
 
         const publicUrl = await uploadController.getResume(user_id);
+        const updatedURL = publicUrl?.replace(/\&token=.*/, "");
 
-        return res.status(200).send(publicUrl);
+        console.log(updatedURL);
+
+        return res.status(200).send(updatedURL);
     } catch (error) {
         console.error(error);
         return res.status(500).send('Internal server error');
