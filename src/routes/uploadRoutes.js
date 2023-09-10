@@ -49,7 +49,7 @@ router.post('/getResume', async (req, res) => {
     }
 });
 
-router.get('/cv/:alias_name', async (req, res) => {
+router.get('/:alias_name', async (req, res) => {
     try {
         const alias_name = req.params.alias_name;
 
