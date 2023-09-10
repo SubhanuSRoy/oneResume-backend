@@ -60,7 +60,7 @@ const getResume = async (user_id) => {
 
 // Function to shorten the URL (you can replace this with your own logic)
 const shortenURL = (originalURL,user_id) => {
-  return `https://oneresume-vd25.onrender.com/${user_id}`;
+  return `https://oneresume-vd25.onrender.com/cv/${user_id}`;
 };
 
 module.exports = {
