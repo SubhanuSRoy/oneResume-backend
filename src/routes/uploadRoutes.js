@@ -54,6 +54,7 @@ router.get('/cv/:alias_name', async (req, res) => {
         const alias_name = req.params.alias_name;
 
         if (!alias_name) {
+            console.log('Missing alias_name')
             return res.status(400).send('Missing alias_name');
         }
 
@@ -61,8 +62,10 @@ router.get('/cv/:alias_name', async (req, res) => {
         const originalURL = `https://firebasestorage.googleapis.com/v0/b/oneresume-storage.appspot.com/o/${alias_name}.pdf?alt=media`;
 
         if (originalURL) {
+            console.log('Redirecting to original URL');
             return res.redirect(originalURL);
         } else {
+            console.log('Alias not found');
             return res.status(404).send('Alias not found');
         }
     } catch (error) {
