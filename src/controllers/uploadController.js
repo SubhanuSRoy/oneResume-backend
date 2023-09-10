@@ -21,8 +21,10 @@ const uploadFile = async (file, user_id) => {
         const fileRef = getStorage().bucket(bucket.name).file(fileBlob.name);
         const downloadURL= getDownloadURL(fileRef);
      
-        
-        resolve(downloadURL);
+         // Shorten the URL (replace this with your shortening logic)
+         const shortURL = shortenURL(downloadURL, user_id);
+
+         resolve(shortURL);
       });
 
       blobStream.end(file.buffer);
@@ -53,6 +55,12 @@ const getResume = async (user_id) => {
     console.error(error);
     throw new Error("Internal server error");
   }
+};
+
+
+// Function to shorten the URL (you can replace this with your own logic)
+const shortenURL = (originalURL,user_id) => {
+  return `https://oneresume-vd25.onrender.com/${user_id}`;
 };
 
 module.exports = {

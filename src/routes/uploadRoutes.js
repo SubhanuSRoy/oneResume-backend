@@ -49,4 +49,26 @@ router.post('/getResume', async (req, res) => {
     }
 });
 
+router.get('/:alias_name', async (req, res) => {
+    try {
+        const alias_name = req.params.alias_name;
+
+        if (!alias_name) {
+            return res.status(400).send('Missing alias_name');
+        }
+
+        // Resolve the alias to the original URL (you need to implement this logic)
+        const originalURL = `https://firebasestorage.googleapis.com/v0/b/oneresume-storage.appspot.com/o/${alias_name}.pdf?alt=media`;
+
+        if (originalURL) {
+            return res.redirect(originalURL);
+        } else {
+            return res.status(404).send('Alias not found');
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send('Internal server error');
+    }
+});
+
 module.exports = router;
