@@ -22,9 +22,9 @@ const uploadFile = async (file, user_id) => {
         const downloadURL= getDownloadURL(fileRef);
      
          // Shorten the URL (replace this with your shortening logic)
-         const shortURL = shortenURL(downloadURL, user_id);
+        //  const shortURL = shortenURL(downloadURL, user_id);
 
-         resolve(shortURL);
+         resolve(downloadURL);
       });
 
       blobStream.end(file.buffer);
@@ -58,10 +58,10 @@ const getResume = async (user_id) => {
 };
 
 
-// Function to shorten the URL (you can replace this with your own logic)
-const shortenURL = (originalURL,user_id) => {
-  return `https://oneresume-vd25.onrender.com/api/cv/${user_id}`;
-};
+// // Function to shorten the URL (you can replace this with your own logic)
+// const shortenURL = (originalURL,user_id) => {
+//   return `https://oneresume-vd25.onrender.com/api/cv/${user_id}`;
+// };
 
 module.exports = {
   uploadFile,
